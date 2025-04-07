@@ -1,0 +1,390 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 158 92% 20%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 158 92% 20%;
+
+    --radius: 0.5rem;
+
+    /* Accessibility variables */
+    --line-spacing: 1;
+    --font-sans: system-ui, sans-serif;
+    --font-dyslexic: "OpenDyslexic", sans-serif;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 158 70% 30%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 158 70% 30%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: "OpenDyslexic", sans-serif; /* Definir fonte de dislexia como padrão */
+  }
+}
+
+/* Estilos para o mapa em modo escuro */
+.dark-map-tiles {
+  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+/* Ajustes para o modo escuro */
+.dark .leaflet-tooltip,
+.dark .leaflet-popup-content-wrapper {
+  background-color: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border-color: hsl(var(--border));
+}
+
+.dark .leaflet-popup-tip {
+  background-color: hsl(var(--card));
+  border-color: hsl(var(--border));
+}
+
+/* Correção para o z-index do mapa */
+.leaflet-container {
+  z-index: 0;
+}
+
+/* Garantir que os controles do mapa fiquem visíveis */
+.leaflet-control-container {
+  z-index: 1;
+}
+
+/* Adicionar estilos para o padrão do governo */
+.gov-header {
+  background-color: #046546;
+  color: white;
+  border-bottom: 4px solid #f9b000;
+}
+
+.gov-footer {
+  background-color: #046546;
+  color: white;
+  border-top: 4px solid #f9b000;
+}
+
+.gov-accent {
+  color: #f9b000;
+}
+
+.gov-primary-button {
+  background-color: #046546;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+.gov-primary-button:hover {
+  background-color: #034e36;
+}
+
+.gov-secondary-button {
+  background-color: #f9b000;
+  color: #046546;
+  transition: background-color 0.3s;
+}
+
+.gov-secondary-button:hover {
+  background-color: #e5a400;
+}
+
+/* Accessibility styles */
+
+/* Font sizes */
+.text-size-small {
+  font-size: 0.875rem;
+}
+
+.text-size-medium {
+  font-size: 1rem;
+}
+
+.text-size-large {
+  font-size: 1.125rem;
+}
+
+.text-size-extra-large {
+  font-size: 1.25rem;
+}
+
+/* Apply font sizes to specific elements for better readability */
+.text-size-small h1 {
+  font-size: 1.5rem;
+}
+
+.text-size-medium h1 {
+  font-size: 1.75rem;
+}
+
+.text-size-large h1 {
+  font-size: 2rem;
+}
+
+.text-size-extra-large h1 {
+  font-size: 2.25rem;
+}
+
+.text-size-small h2 {
+  font-size: 1.25rem;
+}
+
+.text-size-medium h2 {
+  font-size: 1.5rem;
+}
+
+.text-size-large h2 {
+  font-size: 1.75rem;
+}
+
+.text-size-extra-large h2 {
+  font-size: 2rem;
+}
+
+.text-size-small p {
+  font-size: 0.875rem;
+}
+
+.text-size-medium p {
+  font-size: 1rem;
+}
+
+.text-size-large p {
+  font-size: 1.125rem;
+}
+
+.text-size-extra-large p {
+  font-size: 1.25rem;
+}
+
+/* Line spacing */
+body {
+  line-height: calc(1.5 * var(--line-spacing));
+}
+
+/* Improve readability for specific elements */
+p,
+li,
+td,
+th {
+  line-height: calc(1.6 * var(--line-spacing));
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: calc(1.3 * var(--line-spacing));
+}
+
+/* Contrast modes */
+.contrast-high {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 0%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 0%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 0%;
+  --primary: 158 92% 20%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 90%;
+  --secondary-foreground: 0 0% 0%;
+  --muted: 0 0% 90%;
+  --muted-foreground: 0 0% 0%;
+  --accent: 0 0% 90%;
+  --accent-foreground: 0 0% 0%;
+  --destructive: 0 100% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 0%;
+  --input: 0 0% 0%;
+  --ring: 158 92% 20%;
+}
+
+.contrast-high.dark {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --card: 0 0% 0%;
+  --card-foreground: 0 0% 100%;
+  --popover: 0 0% 0%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 158 70% 30%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 0 0% 10%;
+  --muted-foreground: 0 0% 100%;
+  --accent: 0 0% 10%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 100% 50%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 100%;
+  --input: 0 0% 100%;
+  --ring: 158 70% 30%;
+}
+
+/* High contrast specific adjustments */
+.contrast-high a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.contrast-high button,
+.contrast-high .button {
+  border: 2px solid currentColor;
+}
+
+.contrast-high :focus {
+  outline: 3px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+.contrast-inverted {
+  filter: invert(100%) hue-rotate(180deg);
+}
+
+.contrast-inverted img,
+.contrast-inverted video,
+.contrast-inverted iframe,
+.contrast-inverted .leaflet-container {
+  filter: invert(100%) hue-rotate(180deg);
+}
+
+/* Reduce motion */
+.reduce-motion * {
+  animation-duration: 0.001ms !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Focus styles for better keyboard navigation */
+:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Add OpenDyslexic font */
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("/fonts/OpenDyslexic-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "OpenDyslexic";
+  src: url("/fonts/OpenDyslexic-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Animations for accessibility modal */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Ensure font families are applied correctly */
+.font-default {
+  font-family: var(--font-sans) !important;
+}
+
+.font-dyslexic {
+  font-family: "OpenDyslexic", sans-serif !important;
+}
+
+.font-sans-serif {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.font-serif {
+  font-family: Georgia, "Times New Roman", serif !important;
+}
+
+/* Improve accessibility button visibility */
+.accessibility-button {
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.4);
+  transition: transform 0.2s;
+}
+
+.accessibility-button:hover {
+  transform: scale(1.1);
+}
+
+.accessibility-button:focus-visible {
+  box-shadow: 0 0 0 4px hsl(var(--primary));
+}
+
