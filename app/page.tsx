@@ -25,7 +25,6 @@ import { useStats } from "@/services/statistics"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import generateJsonLd from "@/app/json-ld"
-import { StatsResponse } from "@/services/statistics/types"
 
 export default function Home() {
   const router = useRouter()
