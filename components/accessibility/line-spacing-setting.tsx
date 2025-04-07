@@ -1,6 +1,6 @@
 "use client"
 
-import { useAccessibility } from "@/contexts/accessibility-context"
+import { useAccessibility } from "@/contexts/accessibility"
 import { SettingCard } from "./setting-card"
 
 export function LineSpacingSetting() {

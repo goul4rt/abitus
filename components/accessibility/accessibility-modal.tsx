@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useAccessibility } from "@/contexts/accessibility-context"
+import { useAccessibility } from "@/contexts/accessibility"
 import { FontSizeSetting } from "./font-size-setting"
 import { FontFamilySetting } from "./font-family-setting"
 import { ContrastSetting } from "./contrast-setting"

@@ -1,9 +1,9 @@
 import "@/app/globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import { AccessibilityProvider } from "@/contexts/accessibility-context";
+import { AccessibilityProvider } from "@/contexts/accessibility";
 import { Toaster } from "@/components/ui/toaster";
-import { Providers } from "./providers";
+import { Providers } from "@/contexts";
 import { AccessibilityModalWrapper } from "@/components/accessibility/accessibility-modal-wrapper";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";

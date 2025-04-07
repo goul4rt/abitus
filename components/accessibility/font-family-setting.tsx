@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useAccessibility } from "@/contexts/accessibility-context"
+import { useAccessibility } from "@/contexts/accessibility"
 import type { FontFamily } from "@/types/accessibility"
 import { SettingCard } from "./setting-card"
 

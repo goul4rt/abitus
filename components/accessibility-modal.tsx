@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Slider } from "@/components/ui/slider"
 import { Switch } from "@/components/ui/switch"
-import { useAccessibility } from "@/contexts/accessibility-context"
+import { useAccessibility } from "@/contexts/accessibility"
 import type { FontSize, FontFamily, Contrast } from "@/types/accessibility"
 
 export default function AccessibilityModal() {

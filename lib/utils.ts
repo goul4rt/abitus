@@ -21,3 +21,23 @@ export function formatDate(dateString: string) {
   }
 }
 
+export function loadFromStorage<T>(key: string): Partial<T> | null {
+  try {
+    const savedData = localStorage.getItem(key)
+    if (savedData) {
+      return JSON.parse(savedData) as Partial<T>
+    }
+  } catch (error) {
+    console.error(`Failed to load data from storage (${key}):`, error)
+  }
+  return null
+}
+
+export function saveToStorage<T>(key: string, data: T): void {
+  try {
+    localStorage.setItem(key, JSON.stringify(data))
+  } catch (error) {
+    console.error(`Failed to save data to storage (${key}):`, error)
+  }
+}
+

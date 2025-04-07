@@ -1,6 +1,6 @@
 "use client"
 
-import { useAccessibility } from "@/contexts/accessibility-context"
+import { useAccessibility } from "@/contexts/accessibility"
 import type { Contrast } from "@/types/accessibility"
 import { SettingCard } from "./setting-card"
 
