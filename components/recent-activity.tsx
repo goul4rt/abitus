@@ -20,7 +20,7 @@ export default function RecentActivityList({ persons }) {
       {persons.map((person) => (
         <div
           key={person.id}
-          className="flex items-center space-x-4 p-3 rounded-lg hover:bg-muted cursor-pointer transition-colors"
+          className="flex items-center space-x-4 p-3 rounded-lg hover:bg-muted cursor-pointer "
           onClick={() => router.push(`/person/${person.id}`)}
         >
           <Avatar className="h-12 w-12 border">
