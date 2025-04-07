@@ -7,14 +7,15 @@ import { Calendar, MapPin, ArrowRight } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
+import { PersonListItemProps } from "./type"
 
-export default function PersonListItem({ person, onClick }) {
+export default function PersonListItem({ person, onClick }: PersonListItemProps) {
   const { nome, idade, sexo, urlFoto, ultimaOcorrencia } = person
   const isDesaparecido = !ultimaOcorrencia.dataLocalizacao
   const statusText = isDesaparecido ? "Desaparecido" : "Localizado"
   const statusDate = isDesaparecido
     ? formatDate(ultimaOcorrencia.dtDesaparecimento)
-    : formatDate(ultimaOcorrencia.dataLocalizacao)
+    : formatDate(ultimaOcorrencia.dataLocalizacao || "")
   const location = ultimaOcorrencia.localDesaparecimentoConcat
 
   return (
@@ -62,7 +63,7 @@ export default function PersonListItem({ person, onClick }) {
                   <span>
                     {isDesaparecido
                       ? `Desaparecido em ${formatDate(ultimaOcorrencia.dtDesaparecimento)}`
-                      : `Localizado em ${formatDate(ultimaOcorrencia.dataLocalizacao)}`}
+                      : `Localizado em ${formatDate(ultimaOcorrencia.dataLocalizacao || "")}`}
                   </span>
                 </div>
 

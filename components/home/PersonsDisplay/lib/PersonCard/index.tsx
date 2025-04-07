@@ -6,14 +6,15 @@ import { formatDate } from "@/lib/utils"
 import { Calendar, MapPin } from "lucide-react"
 import Image from "next/image"
 import { motion } from "framer-motion"
+import { PersonCardProps } from "./type"
 
-export default function PersonCard({ person, onClick }) {
+export default function PersonCard({ person, onClick }: PersonCardProps) {
   const { nome, idade, sexo, urlFoto, ultimaOcorrencia } = person
   const isDesaparecido = !ultimaOcorrencia.dataLocalizacao
   const statusText = isDesaparecido ? "Desaparecido" : "Localizado"
   const statusDate = isDesaparecido
     ? formatDate(ultimaOcorrencia.dtDesaparecimento)
-    : formatDate(ultimaOcorrencia.dataLocalizacao)
+    : formatDate(ultimaOcorrencia.dataLocalizacao || "")
   const location = ultimaOcorrencia.localDesaparecimentoConcat
 
   return (
@@ -68,7 +69,7 @@ export default function PersonCard({ person, onClick }) {
             <span>
               {isDesaparecido
                 ? `Desaparecido em ${formatDate(ultimaOcorrencia.dtDesaparecimento)}`
-                : `Localizado em ${formatDate(ultimaOcorrencia.dataLocalizacao)}`}
+                : `Localizado em ${formatDate(ultimaOcorrencia.dataLocalizacao || "")}`}
             </span>
           </div>
 

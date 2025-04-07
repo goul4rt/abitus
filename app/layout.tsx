@@ -1,6 +1,6 @@
 import "@/app/globals.css";
 import "./globals.css";
-
+import type { PropsWithChildren } from "react";
 import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { Providers } from "@/contexts";
@@ -13,11 +13,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export { metadata };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>

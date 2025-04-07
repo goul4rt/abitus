@@ -7,9 +7,13 @@ import { formatDate } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { ArrowUpDown } from "lucide-react"
+import { PersonTableProps } from "./types"
 
-export default function PersonTable({ persons, onRowClick }) {
-  const [sortConfig, setSortConfig] = useState({
+export default function PersonTable({ persons, onRowClick }: PersonTableProps) {
+  const [sortConfig, setSortConfig] = useState<{
+    key: string | null;
+    direction: "ascending" | "descending";
+  }>({
     key: null,
     direction: "ascending",
   })
@@ -53,15 +57,15 @@ export default function PersonTable({ persons, onRowClick }) {
     return 0
   })
 
-  const requestSort = (key) => {
-    let direction = "ascending"
+  const requestSort = (key: string) => {
+    let direction: "ascending" | "descending" = "ascending"
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
       direction = "descending"
     }
     setSortConfig({ key, direction })
   }
 
-  const getSortIcon = (key) => {
+  const getSortIcon = (key: string) => {
     if (sortConfig.key !== key) return <ArrowUpDown className="ml-1 h-4 w-4" />
     return sortConfig.direction === "ascending" ? (
       <ArrowUpDown className="ml-1 h-4 w-4 text-primary" />
@@ -70,7 +74,7 @@ export default function PersonTable({ persons, onRowClick }) {
     )
   }
 
-  const getSortDirection = (key) => {
+  const getSortDirection = (key: string) => {
     if (sortConfig.key !== key) return undefined
     return sortConfig.direction === "ascending" ? "ascending" : "descending"
   }
@@ -145,20 +149,20 @@ export default function PersonTable({ persons, onRowClick }) {
             const statusText = isDesaparecido ? "Desaparecido" : "Localizado"
             const statusDate = isDesaparecido
               ? formatDate(person.ultimaOcorrencia.dtDesaparecimento)
-              : formatDate(person.ultimaOcorrencia.dataLocalizacao)
+              : formatDate(person.ultimaOcorrencia.dataLocalizacao || "")
 
             return (
               <TableRow
                 key={person.id}
                 className={`cursor-pointer hover:bg-muted/50 ${index % 2 === 0 ? "bg-muted/20" : ""}`}
-                onClick={() => onRowClick(person.id)}
+                onClick={() => onRowClick(person.id.toString())}
                 tabIndex={0}
                 role="button"
                 aria-label={`Ver detalhes de ${person.nome}, ${person.idade} anos, ${person.sexo === "MASCULINO" ? "masculino" : "feminino"}, ${statusText} em ${statusDate}`}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault()
-                    onRowClick(person.id)
+                    onRowClick(person.id.toString())
                   }
                 }}
               >
@@ -173,11 +177,11 @@ export default function PersonTable({ persons, onRowClick }) {
                 <TableCell className="font-medium">{person.nome}</TableCell>
                 <TableCell>{person.idade} anos</TableCell>
                 <TableCell>{person.sexo === "MASCULINO" ? "Masculino" : "Feminino"}</TableCell>
-                <TableCell>
+                <TableCell> 
                   {formatDate(
                     isDesaparecido
-                      ? person.ultimaOcorrencia.dtDesaparecimento
-                      : person.ultimaOcorrencia.dataLocalizacao,
+                      ? person.ultimaOcorrencia.dtDesaparecimento || ""
+                      : person.ultimaOcorrencia.dataLocalizacao || "",
                   )}
                 </TableCell>
                 <TableCell className="hidden md:table-cell max-w-[200px] truncate">
