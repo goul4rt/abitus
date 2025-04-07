@@ -1,7 +1,7 @@
 import axios from "axios"
-export const API_BASE_URL = "https://abitus-api.geia.vip/v1"
+import { API_BASE_URL } from "./constants"
 
-const api = axios.create({
+const API = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
@@ -9,5 +9,5 @@ const api = axios.create({
   timeout: 15000,
 })
 
-export default api
+export default API
 

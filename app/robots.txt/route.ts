@@ -1,3 +1,4 @@
+import { BASE_SITE_URL } from "@/lib/constants";
 import { NextResponse } from "next/server";
 
 export function GET() {
@@ -6,9 +7,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: ${
-    process.env.NEXT_PUBLIC_BASE_URL || "https://abitus.pjc.mt.gov.br"
-  }/sitemap.xml
+Sitemap: ${BASE_SITE_URL}/sitemap.xml
 `;
 
   return new NextResponse(robotsTxt, {
