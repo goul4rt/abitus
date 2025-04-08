@@ -3,13 +3,7 @@
 import { AlertCircle, RefreshCw } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-
-interface ErrorMessageProps {
-  title?: string
-  message?: string
-  onRetry?: () => void
-  fullPage?: boolean
-}
+import type { ErrorMessageProps } from "./types"
 
 export default function ErrorMessage({
   title = "Ocorreu um erro",

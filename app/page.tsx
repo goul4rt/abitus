@@ -4,21 +4,21 @@ import { useCallback, useMemo, useState } from "react";
 import { Grid, List, Table2, LayoutGrid } from "lucide-react";
 import { useMissingPersons } from "@/services/people";
 import { useStats } from "@/services/statistics";
-import HeaderSection from "@/components/home/HeaderSection";
-import SearchFilters from "@/components/home/SearchFilters";
 import {
+  HeaderSection,
+  PaginationControls,
+  PersonsDisplay,
+  SearchFilters,
   ViewModeDropdown,
   ViewModeTabs,
-} from "@/components/home/ViewModeSelector";
-import PersonsDisplay from "@/components/home/PersonsDisplay"
-import PaginationControls from "@/components/home/PaginationControls";
+} from "@/components/home";
 import generateJsonLd from "@/app/json-ld";
-import { useDebounce } from 'use-debounce';
+import { useDebounce } from "use-debounce";
 
 export default function Home() {
   const [viewMode, setViewMode] = useState("table");
   const [showFilters, setShowFilters] = useState(false);
-  
+
   const [filters, setFilters] = useState({
     nome: "",
     faixaIdadeInicial: "",
@@ -28,7 +28,7 @@ export default function Home() {
   });
 
   const [currentPage, setCurrentPage] = useState(0);
-  
+
   const debouncedName = useDebounce(filters.nome, 500);
   const {
     data: stats = { quantPessoasDesaparecidas: 0, quantPessoasEncontradas: 0 },
@@ -41,8 +41,14 @@ export default function Home() {
     porPagina: 10,
   });
 
-  const persons = useMemo(() => missingPersonsData?.content || [], [missingPersonsData]);
-  const totalPages = useMemo(() => missingPersonsData?.totalPages || 0, [missingPersonsData]);
+  const persons = useMemo(
+    () => missingPersonsData?.content || [],
+    [missingPersonsData]
+  );
+  const totalPages = useMemo(
+    () => missingPersonsData?.totalPages || 0,
+    [missingPersonsData]
+  );
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -82,7 +88,7 @@ export default function Home() {
 
       <HeaderSection
         missingCount={stats.quantPessoasDesaparecidas}
-        foundCount={stats.quantPessoasEncontradas} 
+        foundCount={stats.quantPessoasEncontradas}
         isLoading={isLoading}
       />
 

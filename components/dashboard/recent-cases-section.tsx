@@ -1,24 +1,36 @@
-"use client"
+"use client";
 
-import { useRouter } from "next/navigation"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Skeleton } from "@/components/ui/skeleton"
-import { ChevronRight } from "lucide-react"
-import RecentActivityList from "@/components/recent-activity"
-import { useRandomMissingPersons } from "@/services/people"
-import ErrorMessage from "@/components/layout/error-message"
+import { useRouter } from "next/navigation";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ChevronRight } from "lucide-react";
+import RecentActivityList from "@/components/recent-activity";
+import { useRandomMissingPersons } from "@/services/people";
+import { ErrorMessage } from "@/components/layout";
 
 export function RecentCasesSection() {
-  const router = useRouter()
+  const router = useRouter();
 
-  const { data: recentPersons, isLoading: personsLoading, error: personsError } = useRandomMissingPersons(5)
+  const {
+    data: recentPersons,
+    isLoading: personsLoading,
+    error: personsError,
+  } = useRandomMissingPersons(5);
 
   return (
     <Card>
       <CardHeader>
         <CardTitle>Casos Recentes</CardTitle>
-        <CardDescription>Últimas pessoas reportadas como desaparecidas</CardDescription>
+        <CardDescription>
+          Últimas pessoas reportadas como desaparecidas
+        </CardDescription>
       </CardHeader>
       <CardContent>
         {personsLoading ? (
@@ -43,13 +55,16 @@ export function RecentCasesSection() {
         )}
 
         <div className="mt-4 text-center">
-          <Button variant="outline" onClick={() => router.push("/")} className="w-full">
+          <Button
+            variant="outline"
+            onClick={() => router.push("/")}
+            className="w-full"
+          >
             Ver todos os casos
             <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
-

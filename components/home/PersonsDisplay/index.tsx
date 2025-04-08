@@ -1,9 +1,11 @@
 import { useRouter } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+
 import PersonCard from "@/components/home/PersonsDisplay/lib/PersonCard";
 import PersonListItem from "@/components/home/PersonsDisplay/lib/PersonListItem";
 import PersonTable from "@/components/home/PersonsDisplay/lib/PersonTable";
+
 import { PersonsDisplayProps } from "./types";
 
 export default function PersonsDisplay({
@@ -92,10 +94,7 @@ export default function PersonsDisplay({
       return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {persons.map((person) => (
-            <PersonCard
-              key={person.id}
-              person={person}
-            />
+            <PersonCard key={person.id} person={person} />
           ))}
         </div>
       );
@@ -103,19 +102,12 @@ export default function PersonsDisplay({
       return (
         <div className="space-y-4">
           {persons.map((person) => (
-            <PersonListItem
-              key={person.id}
-              person={person}
-            />
+            <PersonListItem key={person.id} person={person} />
           ))}
         </div>
       );
     case "table":
-      return (
-        <PersonTable
-          persons={persons}
-        />
-      );
+      return <PersonTable persons={persons} />;
     default:
       return null;
   }
