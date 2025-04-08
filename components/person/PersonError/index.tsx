@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import ErrorMessage from "@/components/layout/ErrorMessage";
+import { ErrorMessage } from "@/components/layout";
 import { PersonErrorProps } from "./types";
 
 export function PersonError({ message, onRetry }: PersonErrorProps) {
@@ -21,4 +21,4 @@ export function PersonError({ message, onRetry }: PersonErrorProps) {
       />
     </div>
   );
-} 
+}

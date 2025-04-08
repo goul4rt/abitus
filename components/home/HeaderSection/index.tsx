@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { BarChart2 } from "lucide-react";
-import StatsCounter from "@/components/home/HeaderSection/lib/StatsCounter";
+import { StatsCounter } from "@/components/home";
 import { HeaderSectionProps } from "./types";
 
 export default function HeaderSection({

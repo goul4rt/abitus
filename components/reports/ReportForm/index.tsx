@@ -1,65 +1,81 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { useForm } from "react-hook-form"
-import { yupResolver } from "@hookform/resolvers/yup"
-import { Button } from "@/components/ui/button"
-import LoadingSpinner from "@/components/loading-spinner"
-import { toast } from "@/hooks/use-toast"
-import { FormData, ReportFormProps } from "./types"
-import { reportFormSchema } from "../validator"
-import { TextareaField, DateField } from "../FormFields"
-import FileUpload from "../FileUpload"
-import { SuccessMessage, ErrorMessage } from "../StatusMessages"
-import { useIsMobile } from "@/hooks/use-mobile"
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { Button } from "@/components/ui/button";
+import LoadingSpinner from "@/components/loading-spinner";
+import { toast } from "@/hooks/use-toast";
+import { FormData, ReportFormProps } from "./types";
+import { reportFormSchema } from "../validator";
+import { TextareaField, DateField } from "../FormFields";
+import FileUpload from "../FileUpload";
+import { SuccessMessage, ErrorMessage } from "../StatusMessages";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function ReportForm({
-  onSubmit, isSubmitting, submitSuccess, submitError,
-  resetSubmitStatus, successContent, errorContent, id
+  onSubmit,
+  isSubmitting,
+  submitSuccess,
+  submitError,
+  resetSubmitStatus,
+  successContent,
+  errorContent,
+  id,
 }: ReportFormProps) {
-  const isMobile = useIsMobile()
-  const [files, setFiles] = useState<File[]>([])
-  const hasFiles = files.length > 0
+  const isMobile = useIsMobile();
+  const [files, setFiles] = useState<File[]>([]);
+  const hasFiles = files.length > 0;
 
-  const { control, handleSubmit, formState: { errors }, trigger } = useForm<FormData>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    trigger,
+  } = useForm<FormData>({
     resolver: yupResolver(reportFormSchema) as any,
     mode: "onBlur",
-    context: { hasFiles }
-  })
+    context: { hasFiles },
+  });
 
   useEffect(() => {
     if (submitSuccess) {
       toast({
         title: "Informação enviada",
-        description: "Sua informação foi enviada com sucesso. Obrigado pela contribuição.",
+        description:
+          "Sua informação foi enviada com sucesso. Obrigado pela contribuição.",
         variant: "default",
-      })
+      });
     }
-  }, [submitSuccess])
+  }, [submitSuccess]);
 
   useEffect(() => {
     if (submitError) {
       toast({
         title: "Erro ao enviar informação",
-        description: "Ocorreu um erro ao enviar sua informação. Por favor, tente novamente.",
+        description:
+          "Ocorreu um erro ao enviar sua informação. Por favor, tente novamente.",
         variant: "destructive",
-      })
+      });
     }
-  }, [submitError])
+  }, [submitError]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      const selectedFiles = Array.from(e.target.files)
-      setFiles(selectedFiles)
-      if (selectedFiles.length > 0) trigger("descricao")
+      const selectedFiles = Array.from(e.target.files);
+      setFiles(selectedFiles);
+      if (selectedFiles.length > 0) trigger("descricao");
     }
-  }
+  };
 
-  if (submitSuccess) return <SuccessMessage customContent={successContent} />
-  if (submitError) return <ErrorMessage customContent={errorContent} onRetry={resetSubmitStatus} />
+  if (submitSuccess) return <SuccessMessage customContent={successContent} />;
+  if (submitError)
+    return (
+      <ErrorMessage customContent={errorContent} onRetry={resetSubmitStatus} />
+    );
 
   return (
-    <form 
+    <form
       onSubmit={handleSubmit((data) => onSubmit(data, files))}
       className="space-y-6"
       noValidate
@@ -87,15 +103,12 @@ export default function ReportForm({
         errorMessage={errors.data?.message}
       />
 
-      <FileUpload 
-        files={files}
-        onFileChange={handleFileChange}
-      />
+      <FileUpload files={files} onFileChange={handleFileChange} />
 
       <TextareaField
         name="descricao"
         control={control}
-        label={`Descrição dos anexos ${hasFiles ? '*' : ''}`}
+        label={`Descrição dos anexos ${hasFiles ? "*" : ""}`}
         placeholder="Descreva o conteúdo das fotos anexadas"
         rows={isMobile ? 3 : 2}
         isRequired={hasFiles}
@@ -103,10 +116,10 @@ export default function ReportForm({
         errorMessage={errors.descricao?.message}
       />
 
-      <Button 
-        type="submit" 
-        className="w-full" 
-        disabled={isSubmitting} 
+      <Button
+        type="submit"
+        className="w-full"
+        disabled={isSubmitting}
         aria-busy={isSubmitting}
       >
         {isSubmitting ? (
@@ -114,12 +127,14 @@ export default function ReportForm({
             <LoadingSpinner size={16} text="" />
             <span className="ml-2">Enviando...</span>
           </>
-        ) : "Enviar informação"}
+        ) : (
+          "Enviar informação"
+        )}
       </Button>
 
       <p className="text-sm text-muted-foreground text-center">
         <span aria-hidden="true">* </span>Campos obrigatórios
       </p>
     </form>
-  )
+  );
 }
