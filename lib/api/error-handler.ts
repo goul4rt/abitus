@@ -1,5 +1,5 @@
 import { AxiosError } from "axios"
-import { toast } from "@/components/ui/use-toast"
+import { toast } from "@/hooks/use-toast"
 import { ApiError } from "./types"
 
 export function formatApiError(error: unknown): ApiError {

@@ -1,5 +1,3 @@
-import { type ReactNode } from "react";
-
 export type AccessibilitySettings = {
   fontSize: "small" | "medium" | "large" | "extra-large";
   contrast: "normal" | "high" | "inverted";

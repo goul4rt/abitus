@@ -8,7 +8,7 @@ export interface InformacaoFormDesaparecimento{
 
 export interface SubmitPersonInformationParams {
   ocoId: string | number
-  formData: InformacaoFormData
+  formData: InformacaoFormDesaparecimento
   files: File[]
 }
 

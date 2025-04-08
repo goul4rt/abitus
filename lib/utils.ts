@@ -6,9 +6,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function formatDate(dateString: string, extra?: any) {
+export function formatDate(dateString: string) {
   if (!dateString) {
-    console.log(extra)
      return "Data não informada"
   }
 
@@ -46,10 +45,7 @@ export function saveToStorage<T>(key: string, data: T): void {
 }
 
 export function isLocalized(person: PessoaDesaparecida) {
-  if(person.ultimaOcorrencia.dataLocalizacao || person.ultimaOcorrencia.dataLocalizacao || person.ultimaOcorrencia.encontradoVivo) {
-    return true
-  }
-  return false
+  return !!(person.ultimaOcorrencia.dataLocalizacao || person.ultimaOcorrencia.dataLocalizacao)
 }
 
 export function getPersonStatus(person?: PessoaDesaparecida) {
@@ -58,5 +54,5 @@ export function getPersonStatus(person?: PessoaDesaparecida) {
   const statusText  = !isFound ? "Desaparecido" : "Localizado"
   const statusDate = !isFound ? formatDate(person.ultimaOcorrencia.dtDesaparecimento) : formatDate(person.ultimaOcorrencia.dataLocalizacao || "")
   const disapearDate = formatDate(person.ultimaOcorrencia.dtDesaparecimento)
-  return { statusText, statusDate, isLocalized: isFound, disapearDate}
+  return { statusText, statusDate, isLocalized: isFound, disapearDate }
 }

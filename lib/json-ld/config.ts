@@ -1,11 +1,12 @@
+import { BASE_SITE_URL } from '../constants';
 import { JsonLdConfig } from './types';
 
 export const CONFIG: JsonLdConfig = {
   context: "https://schema.org",
   organization: {
     name: "Sistema de Pessoas Desaparecidas - PJC MT",
-    url: "https://abitus.pjc.mt.gov.br",
-    logo: "https://www.sesp.mt.gov.br/o/mt-portal-theme/images/favicon.ico",
+    url: BASE_SITE_URL,
+    logo: "/favicon.ico",
     description: "Portal oficial para consulta e informações sobre pessoas desaparecidas no estado de Mato Grosso.",
     address: {
       country: "BR",

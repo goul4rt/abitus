@@ -2,10 +2,11 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
-import { StatsResponse } from "@/services/statistics/types"
+import { useStatsCards } from "@/services/statistics"
 import { UserX, UserCheck, Users, TrendingUp } from "lucide-react"
+export default function StatsCards() {
+  const { data: stats, isLoading: loading } = useStatsCards()
 
-export default function StatsCards({ stats, loading }: { stats: StatsResponse, loading: boolean }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" role="region" aria-label="Estatísticas">
       <Card className="overflow-hidden border-l-4 border-l-destructive">
@@ -28,7 +29,7 @@ export default function StatsCards({ stats, loading }: { stats: StatsResponse, l
                   Desaparecidos
                 </p>
                 <h3 className="text-2xl font-bold" aria-labelledby="desaparecidos-label">
-                  {stats.quantPessoasDesaparecidas.toLocaleString()}
+                  {stats?.quantPessoasDesaparecidas?.toLocaleString() || "0"}
                 </h3>
               </div>
             </>
@@ -56,7 +57,7 @@ export default function StatsCards({ stats, loading }: { stats: StatsResponse, l
                   Localizados
                 </p>
                 <h3 className="text-2xl font-bold" aria-labelledby="localizados-label">
-                  {stats.quantPessoasEncontradas.toLocaleString()}
+                  {stats?.quantPessoasEncontradas?.toLocaleString() || "0"}
                 </h3>
               </div>
             </>
@@ -84,7 +85,7 @@ export default function StatsCards({ stats, loading }: { stats: StatsResponse, l
                   Total de Casos
                 </p>
                 <h3 className="text-2xl font-bold" aria-labelledby="total-label">
-                  {(stats.quantPessoasEncontradas + stats.quantPessoasDesaparecidas).toLocaleString()}
+                  {((stats?.quantPessoasEncontradas || 0) + (stats?.quantPessoasDesaparecidas || 0)).toLocaleString()}
                 </h3>
               </div>
             </>
@@ -112,7 +113,7 @@ export default function StatsCards({ stats, loading }: { stats: StatsResponse, l
                   Taxa de Sucesso
                 </p>
                 <h3 className="text-2xl font-bold" aria-labelledby="taxa-label">
-                  {((stats.quantPessoasEncontradas / (stats.quantPessoasDesaparecidas + stats.quantPessoasEncontradas)) * 100).toFixed(1)}%
+                  {(((stats?.quantPessoasEncontradas || 0) / ((stats?.quantPessoasDesaparecidas || 0) + (stats?.quantPessoasEncontradas || 0))) * 100).toFixed(1)}%
                 </h3>
               </div>
             </>
@@ -122,4 +123,3 @@ export default function StatsCards({ stats, loading }: { stats: StatsResponse, l
     </div>
   )
 }
-

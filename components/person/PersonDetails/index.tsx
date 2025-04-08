@@ -12,7 +12,6 @@ import { getPersonStatus } from "@/lib/utils";
 export function PersonDetails({
   person,
   onShare,
-  onReportClick,
 }: PersonDetailsProps) {
   const { nome, idade, sexo, vivo, urlFoto, ultimaOcorrencia, id } = person;
   const { isLocalized, disapearDate } = getPersonStatus(person);
@@ -65,13 +64,11 @@ export function PersonDetails({
           />
 
           {!isLocalized && (
-            <Button
-              size="lg"
-              className="w-full"
-              onClick={() => onReportClick(id?.toString() || "")}
-            >
-              Informar sobre esta pessoa
-            </Button>
+            <Link href={`/report/${ultimaOcorrencia.ocoId}`}>
+              <Button size="lg" className="w-full">
+                Informar sobre esta pessoa
+              </Button>
+            </Link>
           )}
         </div>
       </div>

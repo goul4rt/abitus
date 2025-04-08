@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { usePersonDetails } from "@/services/people";
 import { useMemo } from "react";
 import { 
@@ -10,7 +10,6 @@ import {
 } from "@/components/person";
 
 export default function PersonDetailsPage() {
-  const router = useRouter();
   const params = useParams();
   const id = useMemo(() => params?.id as string, [params]);
 
@@ -31,10 +30,6 @@ export default function PersonDetailsPage() {
     }
   };
 
-  const handleReportClick = (id: string) => {
-    router.push(`/person/${id}/report`);
-  };
-
   if (isLoading) {
     return <PersonSkeleton />;
   }
@@ -47,7 +42,6 @@ export default function PersonDetailsPage() {
     <PersonDetails 
       person={person} 
       onShare={handleShare} 
-      onReportClick={handleReportClick} 
     />
   );
 }

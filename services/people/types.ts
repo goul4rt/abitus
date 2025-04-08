@@ -5,6 +5,7 @@ export interface PessoaDesaparecida {
   sexo: "MASCULINO" | "FEMININO"
   urlFoto: string
   ultimaOcorrencia: {
+    ocoId: number
     dtDesaparecimento: string
     dataLocalizacao?: string
     localDesaparecimentoConcat?: string

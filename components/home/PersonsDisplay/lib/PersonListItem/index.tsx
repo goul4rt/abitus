@@ -31,9 +31,6 @@ export default function PersonListItem({ person }: PersonListItemProps) {
       >
         <CardContent className="p-4">
           <div className="flex items-center gap-4">
-          {
-                  JSON.stringify(person.ultimaOcorrencia, null,2)
-                }
             <Avatar className="h-16 w-16 border">
               <AvatarImage src={urlFoto} alt={`Foto de ${nome}`} />
               <AvatarFallback aria-label={nome || "Pessoa desaparecida"}>{nome?.charAt(0) || "?"}</AvatarFallback>

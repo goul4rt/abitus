@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Home, BarChart2, MapPin, Users } from "lucide-react"
 import generateJsonLd from "@/app/json-ld"
-import { StatsSection } from "@/components/dashboard/stats-section"
 import { ChartsSection } from "@/components/dashboard/charts-section"
 import { MapSection } from "@/components/dashboard/map-section"
 import { RecentCasesSection } from "@/components/dashboard/recent-cases-section"
 import { SuccessStoriesSection } from "@/components/dashboard/success-stories-section"
 import { useStats } from "@/services/statistics"
+import StatsCards from "@/components/dashboard/stats-cards"
 
 export default function Dashboard() {
   const router = useRouter()
@@ -35,7 +35,7 @@ export default function Dashboard() {
         </Button>
       </div>
 
-      <StatsSection />
+      <StatsCards />
 
       <Tabs defaultValue="charts" className="mt-8">
         <TabsList className="grid w-full md:w-auto grid-cols-3 mb-4">
