@@ -2,9 +2,10 @@
 
 import { useAccessibility } from "@/contexts/accessibility"
 import type { Contrast } from "@/types/accessibility"
-import { SettingCard } from "./setting-card"
+import { SettingCard } from "../SettingCard"
+import type { ContrastOption } from "./types"
 
-const contrastOptions: Array<{ value: Contrast; label: string; className: string }> = [
+const contrastOptions: Array<ContrastOption> = [
   { value: "normal", label: "Normal", className: "" },
   { value: "high", label: "Alto contraste", className: "font-bold" },
   { value: "inverted", label: "Invertido", className: "bg-black text-white px-1" },
@@ -34,5 +35,4 @@ export function ContrastSetting() {
       </div>
     </SettingCard>
   )
-}
-
+} 

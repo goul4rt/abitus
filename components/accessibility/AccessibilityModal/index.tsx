@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from "react"
 import { X, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useAccessibility } from "@/contexts/accessibility"
-import { FontSizeSetting } from "./font-size-setting"
-import { FontFamilySetting } from "./font-family-setting"
-import { ContrastSetting } from "./contrast-setting"
-import { LineSpacingSetting } from "./line-spacing-setting"
-import { MotionSetting } from "./motion-setting"
+import { FontSizeSetting } from "../FontSizeSetting/index"
+import { FontFamilySetting } from "../FontFamilySetting/index"
+import { ContrastSetting } from "../ContrastSetting/index"
+import { LineSpacingSetting } from "../LineSpacingSetting/index"
+import { MotionSetting } from "../MotionSetting/index"
 
 export function AccessibilityModal() {
   const [isOpen, setIsOpen] = useState(false)
@@ -178,5 +178,4 @@ export function AccessibilityModal() {
   )
 }
 
-export default AccessibilityModal
-
+export default AccessibilityModal 

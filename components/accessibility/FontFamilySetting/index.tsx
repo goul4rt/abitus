@@ -1,12 +1,12 @@
 "use client"
 
 import type React from "react"
-
 import { useAccessibility } from "@/contexts/accessibility"
 import type { FontFamily } from "@/types/accessibility"
-import { SettingCard } from "./setting-card"
+import { SettingCard } from "../SettingCard"
+import type { FontFamilyOption } from "./types"
 
-const fontFamilyOptions: Array<{ value: FontFamily; label: string; style: React.CSSProperties }> = [
+const fontFamilyOptions: Array<FontFamilyOption> = [
   { value: "dyslexic", label: "Dislexia", style: { fontFamily: "'OpenDyslexic', sans-serif" } },
   { value: "default", label: "Sistema", style: { fontFamily: "var(--font-sans)" } },
   { value: "sans-serif", label: "Sans-serif", style: { fontFamily: "Arial, sans-serif" } },
@@ -38,5 +38,4 @@ export function FontFamilySetting() {
       </div>
     </SettingCard>
   )
-}
-
+} 

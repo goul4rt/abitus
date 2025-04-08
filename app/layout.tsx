@@ -4,7 +4,7 @@ import type { PropsWithChildren } from "react";
 import { Inter } from "next/font/google";
 import { Toaster } from "@/components/ui/toaster";
 import { Providers } from "@/contexts";
-import { AccessibilityModalWrapper } from "@/components/accessibility/accessibility-modal-wrapper";
+import { AccessibilityModalWrapper } from "@/components/accessibility/AccessibilityModalWrapper";
 import { Header, Footer, Head } from "@/components/layout";
 import { metadata } from "@/lib/metadata";
 const inter = Inter({ subsets: ["latin"] });

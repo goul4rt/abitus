@@ -1,9 +1,9 @@
 "use client"
 import { useAccessibility } from "@/contexts/accessibility"
-import type { FontSize } from "@/types/accessibility"
-import { SettingCard } from "./setting-card"
+import { SettingCard } from "../SettingCard"
+import type { FontSizeOption } from "./types"
 
-const fontSizeOptions: Array<{ value: FontSize; label: string; className: string }> = [
+const fontSizeOptions: Array<FontSizeOption> = [
   { value: "small", label: "Pequena", className: "text-sm" },
   { value: "medium", label: "Média", className: "text-base" },
   { value: "large", label: "Grande", className: "text-lg" },
@@ -34,5 +34,4 @@ export function FontSizeSetting() {
       </div>
     </SettingCard>
   )
-}
-
+} 

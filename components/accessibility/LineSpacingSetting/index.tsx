@@ -1,12 +1,13 @@
 "use client"
 
 import { useAccessibility } from "@/contexts/accessibility"
-import { SettingCard } from "./setting-card"
+import { SettingCard } from "../SettingCard"
+import type { SpacingOption } from "./types"
 
 export function LineSpacingSetting() {
   const { lineSpacing, updateSettings } = useAccessibility()
 
-  const spacingOptions = [
+  const spacingOptions: SpacingOption[] = [
     { value: 1, label: "Normal" },
     { value: 1.5, label: "Médio" },
     { value: 2, label: "Amplo" },
@@ -47,5 +48,4 @@ export function LineSpacingSetting() {
       </div>
     </SettingCard>
   )
-}
-
+} 

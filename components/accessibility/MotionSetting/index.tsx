@@ -1,7 +1,7 @@
 "use client"
 
 import { useAccessibility } from "@/contexts/accessibility"
-import { SettingCard } from "./setting-card"
+import { SettingCard } from "../SettingCard"
 
 export function MotionSetting() {
   const { reduceMotion, updateSettings } = useAccessibility()
@@ -40,5 +40,4 @@ export function MotionSetting() {
       </div>
     </SettingCard>
   )
-}
-
+} 

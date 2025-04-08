@@ -1,10 +1,4 @@
-import type { ReactNode } from "react"
-
-interface SettingCardProps {
-  title?: string
-  description?: string
-  children: ReactNode
-}
+import type { SettingCardProps } from "./types"
 
 export function SettingCard({ title, description, children }: SettingCardProps) {
   return (
@@ -18,5 +12,4 @@ export function SettingCard({ title, description, children }: SettingCardProps) 
       {children}
     </div>
   )
-}
-
+} 
