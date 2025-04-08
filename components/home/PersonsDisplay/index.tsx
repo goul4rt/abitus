@@ -95,7 +95,6 @@ export default function PersonsDisplay({
             <PersonCard
               key={person.id}
               person={person}
-              onClick={() => router.push(`/person/${person.id}`)}
             />
           ))}
         </div>
@@ -107,7 +106,6 @@ export default function PersonsDisplay({
             <PersonListItem
               key={person.id}
               person={person}
-              onClick={() => router.push(`/person/${person.id}`)}
             />
           ))}
         </div>
@@ -116,7 +114,6 @@ export default function PersonsDisplay({
       return (
         <PersonTable
           persons={persons}
-          onRowClick={(id: string) => router.push(`/person/${id}`)}
         />
       );
     default:

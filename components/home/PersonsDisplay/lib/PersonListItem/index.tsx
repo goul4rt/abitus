@@ -9,8 +9,9 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { PersonListItemProps } from "./type"
 import { useMemo } from "react"
+import Link from "next/link"
 
-export default function PersonListItem({ person, onClick }: PersonListItemProps) {
+export default function PersonListItem({ person }: PersonListItemProps) {
   const { nome, idade, sexo, urlFoto, ultimaOcorrencia } = person
   const { isLocalized, statusText, statusDate, disapearDate } = useMemo(() => {
     return getPersonStatus(person);
@@ -18,24 +19,21 @@ export default function PersonListItem({ person, onClick }: PersonListItemProps)
 
   return (
     <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.2 }}>
+      <Link href={`/person/${person.id}`}> 
       <Card
         className="overflow-hidden transition-all hover:shadow-md cursor-pointer border-l-4"
         style={{
           borderLeftColor: !isLocalized ? "var(--destructive)" : "var(--green-600)",
         }}
-        onClick={onClick}
         tabIndex={0}
         role="button"
         aria-label={`Ver detalhes de ${nome}, ${idade} anos, ${sexo === "MASCULINO" ? "masculino" : "feminino"}, ${statusText} em ${statusDate}`}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault()
-            onClick()
-          }
-        }}
       >
         <CardContent className="p-4">
           <div className="flex items-center gap-4">
+          {
+                  JSON.stringify(person.ultimaOcorrencia, null,2)
+                }
             <Avatar className="h-16 w-16 border">
               <AvatarImage src={urlFoto} alt={`Foto de ${nome}`} />
               <AvatarFallback aria-label={nome || "Pessoa desaparecida"}>{nome?.charAt(0) || "?"}</AvatarFallback>
@@ -79,6 +77,7 @@ export default function PersonListItem({ person, onClick }: PersonListItemProps)
           </div>
         </CardContent>
       </Card>
+      </Link>
     </motion.div>
   )
 }
