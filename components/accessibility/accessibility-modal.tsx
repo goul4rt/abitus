@@ -89,7 +89,7 @@ export function AccessibilityModal() {
       <Button
         variant="outline"
         size="icon"
-        className={`fixed ${position === "right" ? "right-4" : "left-4"} top-1/2 -translate-y-1/2 z-50 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full h-12 w-12 shadow-lg`}
+        className={`fixed ${position === "right" ? "right-4" : "left-4"} bottom-4 z-50 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full h-12 w-12 shadow-lg`}
         onClick={() => setIsOpen(true)}
         aria-label="Opções de acessibilidade"
       >

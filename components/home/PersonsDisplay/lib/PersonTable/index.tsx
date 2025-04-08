@@ -3,12 +3,11 @@
 import { useState } from "react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
-import { formatDate } from "@/lib/utils"
+import { formatDate, getPersonStatus } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { ArrowUpDown } from "lucide-react"
 import { PersonTableProps } from "./types"
-
 export default function PersonTable({ persons, onRowClick }: PersonTableProps) {
   const [sortConfig, setSortConfig] = useState<{
     key: string | null;
@@ -126,7 +125,7 @@ export default function PersonTable({ persons, onRowClick }: PersonTableProps) {
                 aria-sort={getSortDirection("data")}
                 aria-label={`Ordenar por data, atualmente ${getSortDirection("data") || "não ordenado"}`}
               >
-                Data {getSortIcon("data")}
+                Desaparecimento{getSortIcon("data")}
               </Button>
             </TableHead>
             <TableHead className="hidden md:table-cell">
@@ -145,11 +144,7 @@ export default function PersonTable({ persons, onRowClick }: PersonTableProps) {
         </TableHeader>
         <TableBody>
           {sortedPersons.map((person, index) => {
-            const isDesaparecido = !person.ultimaOcorrencia.dataLocalizacao
-            const statusText = isDesaparecido ? "Desaparecido" : "Localizado"
-            const statusDate = isDesaparecido
-              ? formatDate(person.ultimaOcorrencia.dtDesaparecimento)
-              : formatDate(person.ultimaOcorrencia.dataLocalizacao || "")
+            const { isLocalized, statusText, statusDate, disapearDate } = getPersonStatus(person)
 
             return (
               <TableRow
@@ -178,17 +173,13 @@ export default function PersonTable({ persons, onRowClick }: PersonTableProps) {
                 <TableCell>{person.idade} anos</TableCell>
                 <TableCell>{person.sexo === "MASCULINO" ? "Masculino" : "Feminino"}</TableCell>
                 <TableCell> 
-                  {formatDate(
-                    isDesaparecido
-                      ? person.ultimaOcorrencia.dtDesaparecimento || ""
-                      : person.ultimaOcorrencia.dataLocalizacao || "",
-                  )}
+                  {(disapearDate)}
                 </TableCell>
                 <TableCell className="hidden md:table-cell max-w-[200px] truncate">
                   {person.ultimaOcorrencia.localDesaparecimentoConcat || "-"}
                 </TableCell>
                 <TableCell>
-                  <Badge className={isDesaparecido ? "bg-destructive" : "bg-mt-green"} aria-label={statusText}>
+                  <Badge className={!isLocalized ? "bg-destructive" : "bg-green-600"} aria-label={statusText}>
                     {statusText}
                   </Badge>
                 </TableCell>

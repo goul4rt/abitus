@@ -10,10 +10,9 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ViewModeSelectorProps, ViewModeTabsProps } from "./types";
 
 export function ViewModeDropdown({
-  viewMode,
   setViewMode,
   renderViewModeIcon,
-}: ViewModeSelectorProps) {
+}: Omit<ViewModeSelectorProps, "viewMode">) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

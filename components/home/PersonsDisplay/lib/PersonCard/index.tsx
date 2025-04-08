@@ -2,21 +2,18 @@
 
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { formatDate } from "@/lib/utils"
+import { getPersonStatus } from "@/lib/utils"
 import { Calendar, MapPin } from "lucide-react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { PersonCardProps } from "./type"
-
+import { useMemo } from "react"
 export default function PersonCard({ person, onClick }: PersonCardProps) {
   const { nome, idade, sexo, urlFoto, ultimaOcorrencia } = person
-  const isDesaparecido = !ultimaOcorrencia.dataLocalizacao
-  const statusText = isDesaparecido ? "Desaparecido" : "Localizado"
-  const statusDate = isDesaparecido
-    ? formatDate(ultimaOcorrencia.dtDesaparecimento)
-    : formatDate(ultimaOcorrencia.dataLocalizacao || "")
-  const location = ultimaOcorrencia.localDesaparecimentoConcat
-
+  const { isLocalized, statusText, statusDate, disapearDate } = useMemo(() => {
+    return getPersonStatus(person);
+  }, [person]);
+  
   return (
     <motion.div whileHover={{ scale: 1.02 }} transition={{ duration: 0.2 }} className="h-full">
       <Card
@@ -47,7 +44,7 @@ export default function PersonCard({ person, onClick }: PersonCardProps) {
             </div>
           )}
           <Badge
-            className={`absolute top-2 right-2 ${isDesaparecido ? "bg-destructive" : "bg-green-600"}`}
+            className={`absolute top-2 right-2 ${!isLocalized ? "bg-destructive" : "bg-green-600"}`}
             aria-label={statusText}
           >
             {statusText}
@@ -67,9 +64,7 @@ export default function PersonCard({ person, onClick }: PersonCardProps) {
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <Calendar className="h-3 w-3" aria-hidden="true" />
             <span>
-              {isDesaparecido
-                ? `Desaparecido em ${formatDate(ultimaOcorrencia.dtDesaparecimento)}`
-                : `Localizado em ${formatDate(ultimaOcorrencia.dataLocalizacao || "")}`}
+              Desapareceu em {disapearDate} 
             </span>
           </div>
 

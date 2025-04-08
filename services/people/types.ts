@@ -2,12 +2,13 @@ export interface PessoaDesaparecida {
   id: number
   nome: string
   idade: number
-  sexo: string
+  sexo: "MASCULINO" | "FEMININO"
   urlFoto: string
   ultimaOcorrencia: {
     dtDesaparecimento: string
     dataLocalizacao?: string
     localDesaparecimentoConcat?: string
+    encontradoVivo?: boolean
     ocorrenciaEntrevDesapDTO?: {
       vestimentasDesaparecido?: string
       informacao?: string

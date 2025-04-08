@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import MapVisualization from "@/components/map-visualization"
+import MapVisualization from "@/components/dashboard/map/map-component"
 
 export function MapSection() {
   return (

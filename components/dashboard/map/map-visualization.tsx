@@ -1,7 +1,7 @@
 "use client"
 import dynamic from "next/dynamic"
 
-const MapWithNoSSR = dynamic(() => import("@/components/map-component"), {
+const MapWithNoSSR = dynamic(() => import("@/components/dashboard/map/map-component"), {
   ssr: false,
   loading: () => (
     <div className="h-full w-full flex items-center justify-center bg-muted/50 rounded-md border">

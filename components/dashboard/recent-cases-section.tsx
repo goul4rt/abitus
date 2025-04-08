@@ -7,7 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { ChevronRight } from "lucide-react"
 import RecentActivityList from "@/components/recent-activity"
 import { useRandomMissingPersons } from "@/services/people"
-import ErrorMessage from "@/components/error-message"
+import ErrorMessage from "@/components/layout/error-message"
 
 export function RecentCasesSection() {
   const router = useRouter()

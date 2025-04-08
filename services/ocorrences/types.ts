@@ -1,6 +1,6 @@
 import { type UseMutationOptions } from "@tanstack/react-query"
 
-export interface InformacaoFormData {
+export interface InformacaoFormDesaparecimento{
   informacao: string
   descricao: string
   data: string

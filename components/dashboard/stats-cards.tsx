@@ -2,9 +2,10 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
+import { StatsResponse } from "@/services/statistics/types"
 import { UserX, UserCheck, Users, TrendingUp } from "lucide-react"
 
-export default function StatsCards({ stats, loading }) {
+export default function StatsCards({ stats, loading }: { stats: StatsResponse, loading: boolean }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" role="region" aria-label="Estatísticas">
       <Card className="overflow-hidden border-l-4 border-l-destructive">
@@ -83,7 +84,7 @@ export default function StatsCards({ stats, loading }) {
                   Total de Casos
                 </p>
                 <h3 className="text-2xl font-bold" aria-labelledby="total-label">
-                  {stats.totalCasos.toLocaleString()}
+                  {(stats.quantPessoasEncontradas + stats.quantPessoasDesaparecidas).toLocaleString()}
                 </h3>
               </div>
             </>
@@ -111,7 +112,7 @@ export default function StatsCards({ stats, loading }) {
                   Taxa de Sucesso
                 </p>
                 <h3 className="text-2xl font-bold" aria-labelledby="taxa-label">
-                  {stats.percentualLocalizados}%
+                  {((stats.quantPessoasEncontradas / (stats.quantPessoasDesaparecidas + stats.quantPessoasEncontradas)) * 100).toFixed(1)}%
                 </h3>
               </div>
             </>

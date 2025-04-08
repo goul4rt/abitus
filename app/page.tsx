@@ -24,7 +24,7 @@ export default function Home() {
     faixaIdadeInicial: "",
     faixaIdadeFinal: "",
     sexo: "",
-    status: "DESAPARECIDO",
+    status: "",
   });
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -82,7 +82,8 @@ export default function Home() {
 
       <HeaderSection
         missingCount={stats.quantPessoasDesaparecidas}
-        foundCount={stats.quantPessoasEncontradas}
+        foundCount={stats.quantPessoasEncontradas} 
+        isLoading={isLoading}
       />
 
       <SearchFilters
@@ -93,7 +94,6 @@ export default function Home() {
         onToggleFilters={() => setShowFilters(!showFilters)}
         renderViewModeSelector={
           <ViewModeDropdown
-            viewMode={viewMode}
             setViewMode={setViewMode}
             renderViewModeIcon={renderViewModeIcon}
           />

@@ -1,8 +1,34 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { UserX, UserCheck } from "lucide-react"
 import { StatsCounterProps } from "./types";
+import { Skeleton } from "@/components/ui/skeleton";
 
-export default function StatsCounter({ missingCount, foundCount }: StatsCounterProps) {
+export default function StatsCounter({ missingCount, foundCount, isLoading }: StatsCounterProps) {
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        <Card className="overflow-hidden">
+          <CardContent className="p-6 flex items-center gap-4">
+            <Skeleton className="rounded-full h-12 w-12" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-40" />
+              <Skeleton className="h-6 w-20" />
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="overflow-hidden">
+          <CardContent className="p-6 flex items-center gap-4">
+            <Skeleton className="rounded-full h-12 w-12" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-40" />
+              <Skeleton className="h-6 w-20" />
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
       <Card className="overflow-hidden">
@@ -31,4 +57,3 @@ export default function StatsCounter({ missingCount, foundCount }: StatsCounterP
     </div>
   )
 }
-

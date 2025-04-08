@@ -7,6 +7,7 @@ import { HeaderSectionProps } from "./types";
 export default function HeaderSection({
   missingCount,
   foundCount,
+  isLoading,
 }: HeaderSectionProps) {
   const router = useRouter();
 
@@ -31,7 +32,11 @@ export default function HeaderSection({
         </Button>
       </div>
 
-      <StatsCounter missingCount={missingCount} foundCount={foundCount} />
+      <StatsCounter
+        missingCount={missingCount}
+        foundCount={foundCount}
+        isLoading={isLoading}
+      />
     </>
   );
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import StatsCards from "@/components/stats-cards"
+import StatsCards from "@/components/dashboard/stats-cards"
 import { useStats } from "@/services/statistics"
 
 export function StatsSection() {

@@ -2,28 +2,26 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { formatDate } from "@/lib/utils"
+import { getPersonStatus } from "@/lib/utils"
 import { Calendar, MapPin, ArrowRight } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { PersonListItemProps } from "./type"
+import { useMemo } from "react"
 
 export default function PersonListItem({ person, onClick }: PersonListItemProps) {
   const { nome, idade, sexo, urlFoto, ultimaOcorrencia } = person
-  const isDesaparecido = !ultimaOcorrencia.dataLocalizacao
-  const statusText = isDesaparecido ? "Desaparecido" : "Localizado"
-  const statusDate = isDesaparecido
-    ? formatDate(ultimaOcorrencia.dtDesaparecimento)
-    : formatDate(ultimaOcorrencia.dataLocalizacao || "")
-  const location = ultimaOcorrencia.localDesaparecimentoConcat
+  const { isLocalized, statusText, statusDate, disapearDate } = useMemo(() => {
+    return getPersonStatus(person);
+  }, [person]);
 
   return (
     <motion.div whileHover={{ scale: 1.01 }} transition={{ duration: 0.2 }}>
       <Card
         className="overflow-hidden transition-all hover:shadow-md cursor-pointer border-l-4"
         style={{
-          borderLeftColor: isDesaparecido ? "var(--destructive)" : "var(--green-600)",
+          borderLeftColor: !isLocalized ? "var(--destructive)" : "var(--green-600)",
         }}
         onClick={onClick}
         tabIndex={0}
@@ -46,7 +44,7 @@ export default function PersonListItem({ person, onClick }: PersonListItemProps)
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
                 <h3 className="font-semibold text-lg truncate">{nome}</h3>
-                <Badge className={isDesaparecido ? "bg-destructive" : "bg-green-600"} aria-label={statusText}>
+                <Badge className={!isLocalized ? "bg-destructive" : "bg-green-600"} aria-label={statusText}>
                   {statusText}
                 </Badge>
               </div>
@@ -61,9 +59,7 @@ export default function PersonListItem({ person, onClick }: PersonListItemProps)
                 <div className="flex items-center gap-1">
                   <Calendar className="h-3 w-3" aria-hidden="true" />
                   <span>
-                    {isDesaparecido
-                      ? `Desaparecido em ${formatDate(ultimaOcorrencia.dtDesaparecimento)}`
-                      : `Localizado em ${formatDate(ultimaOcorrencia.dataLocalizacao || "")}`}
+                    Desapareceu em {disapearDate}
                   </span>
                 </div>
 
