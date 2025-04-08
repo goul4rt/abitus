@@ -10,12 +10,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { formatDate, getPersonStatus } from "@/lib/utils";
+import { getPersonStatus } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown } from "lucide-react";
 import { PersonTableProps } from "./types";
-import Link from "next/link";
+
 export default function PersonTable({ persons }: PersonTableProps) {
   const [sortConfig, setSortConfig] = useState<{
     key: string | null;
@@ -166,49 +166,61 @@ export default function PersonTable({ persons }: PersonTableProps) {
           {sortedPersons.map((person, index) => {
             const { isLocalized, statusText, statusDate, disapearDate } =
               getPersonStatus(person);
+
             return (
-                <TableRow
-                  tabIndex={0}
-                  role="button"
-                  aria-label={`Ver detalhes de ${person.nome}, ${
-                    person.idade
-                  } anos, ${
-                    person.sexo === "MASCULINO" ? "masculino" : "feminino"
-                  }, ${statusText} em ${statusDate}`}
-                >
-                  <TableCell href={`/person/${person.id}`}>
-                    <Avatar className="h-10 w-10 border-2 border-primary/20">
-                      <AvatarImage
-                        src={person.urlFoto}
-                        alt={`Foto de ${person.nome}`}
-                      />
-                      <AvatarFallback
-                        aria-label={person.nome || "Pessoa desaparecida"}
-                      >
-                        {person.nome?.charAt(0) || "?"}
-                      </AvatarFallback>
-                    </Avatar>
-                  </TableCell>
-                  <TableCell href={`/person/${person.id}`} className="font-medium">{person.nome}</TableCell>
-                  <TableCell href={`/person/${person.id}`}>{person.idade} anos</TableCell>
-                  <TableCell href={`/person/${person.id}`}>
-                    {person.sexo === "MASCULINO" ? "Masculino" : "Feminino"}
-                  </TableCell>
-                  <TableCell href={`/person/${person.id}`}>{disapearDate}</TableCell>
-                  <TableCell className="hidden md:table-cell max-w-[200px] truncate" href={`/person/${person.id}`}>
-                    {person.ultimaOcorrencia.localDesaparecimentoConcat || "-"}
-                  </TableCell>
-                  <TableCell href={`/person/${person.id}`}>
-                    <Badge
-                      className={
-                        !isLocalized ? "bg-destructive" : "bg-green-600"
-                      }
-                      aria-label={statusText}
+              <TableRow
+                key={person.id}
+                tabIndex={0}
+                role="button"
+                aria-label={`Ver detalhes de ${person.nome}, ${
+                  person.idade
+                } anos, ${
+                  person.sexo === "MASCULINO" ? "masculino" : "feminino"
+                }, ${statusText} em ${statusDate}`}
+              >
+                <TableCell href={`/person/${person.id}`}>
+                  <Avatar className="h-10 w-10 border-2 border-primary/20">
+                    <AvatarImage
+                      src={person.urlFoto}
+                      alt={`Foto de ${person.nome}`}
+                    />
+                    <AvatarFallback
+                      aria-label={person.nome || "Pessoa desaparecida"}
                     >
-                      {statusText}
-                    </Badge>
-                  </TableCell>
-                </TableRow>
+                      {person.nome?.charAt(0) || "?"}
+                    </AvatarFallback>
+                  </Avatar>
+                </TableCell>
+                <TableCell
+                  href={`/person/${person.id}`}
+                  className="font-medium"
+                >
+                  {person.nome}
+                </TableCell>
+                <TableCell href={`/person/${person.id}`}>
+                  {person.idade} anos
+                </TableCell>
+                <TableCell href={`/person/${person.id}`}>
+                  {person.sexo === "MASCULINO" ? "Masculino" : "Feminino"}
+                </TableCell>
+                <TableCell href={`/person/${person.id}`}>
+                  {disapearDate}
+                </TableCell>
+                <TableCell
+                  className="hidden md:table-cell max-w-[200px] truncate"
+                  href={`/person/${person.id}`}
+                >
+                  {person.ultimaOcorrencia.localDesaparecimentoConcat || "-"}
+                </TableCell>
+                <TableCell href={`/person/${person.id}`}>
+                  <Badge
+                    className={!isLocalized ? "bg-destructive" : "bg-green-600"}
+                    aria-label={statusText}
+                  >
+                    {statusText}
+                  </Badge>
+                </TableCell>
+              </TableRow>
             );
           })}
         </TableBody>
