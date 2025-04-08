@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "@/components/ui/button";
-import LoadingSpinner from "@/components/loading-spinner";
+import LoadingSpinner from "@/components/ui/loading-spinner";
 import { toast } from "@/hooks/use-toast";
 import { FormData, ReportFormProps } from "./types";
 import { reportFormSchema } from "../validator";
@@ -21,7 +21,6 @@ export default function ReportForm({
   resetSubmitStatus,
   successContent,
   errorContent,
-  id,
 }: ReportFormProps) {
   const isMobile = useIsMobile();
   const [files, setFiles] = useState<File[]>([]);
