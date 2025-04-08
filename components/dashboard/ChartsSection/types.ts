@@ -7,7 +7,6 @@ export interface ChartData {
 export interface ProcessedChartData {
   genderData: ChartData[]
   ageData: ChartData[]
-  statusData: ChartData[]
   totalLoaded: number
   totalAvailable: number
 }

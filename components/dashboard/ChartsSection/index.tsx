@@ -14,7 +14,6 @@ export function ChartsSection() {
   const {
     genderData,
     ageData,
-    statusData,
     totalLoaded,
     totalAvailable,
     data,
@@ -42,9 +41,8 @@ export function ChartsSection() {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <GenderChart data={genderData} />
-        <StatusChart data={statusData} />
         <AgeChart data={ageData} />
+        <GenderChart data={genderData} />
       </div>
 
       <LoadingIndicator isLoading={isFetching && !isFetchingNextPage} />

@@ -11,7 +11,7 @@ export default function StatsCards() {
   })
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" role="region" aria-label="Estatísticas">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" role="region" aria-label="Estatísticas">
       <Card className="overflow-hidden border-l-4 border-l-destructive">
         <CardContent className="p-6 flex items-center gap-4">
           {loading ? (
@@ -89,34 +89,6 @@ export default function StatsCards() {
                 </p>
                 <h3 className="text-2xl font-bold" aria-labelledby="total-label">
                   {((stats?.quantPessoasEncontradas || 0) + (stats?.quantPessoasDesaparecidas || 0)).toLocaleString()}
-                </h3>
-              </div>
-            </>
-          )}
-        </CardContent>
-      </Card>
-
-      <Card className="overflow-hidden border-l-4 border-l-purple-600">
-        <CardContent className="p-6 flex items-center gap-4">
-          {loading ? (
-            <>
-              <Skeleton className="h-12 w-12 rounded-full" aria-hidden="true" />
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-[100px]" aria-hidden="true" />
-                <Skeleton className="h-6 w-[60px]" aria-hidden="true" />
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="rounded-full bg-purple-100 p-3" aria-hidden="true">
-                <TrendingUp className="h-6 w-6 text-purple-600" />
-              </div>
-              <div>
-                <p className="text-sm font-medium text-muted-foreground" id="taxa-label">
-                  Taxa de Sucesso
-                </p>
-                <h3 className="text-2xl font-bold" aria-labelledby="taxa-label">
-                  {(((stats?.quantPessoasEncontradas || 0) / ((stats?.quantPessoasDesaparecidas || 0) + (stats?.quantPessoasEncontradas || 0))) * 100).toFixed(1)}%
                 </h3>
               </div>
             </>

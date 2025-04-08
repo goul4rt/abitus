@@ -49,9 +49,13 @@ export const getMarkerRadius = (weight: number): number => {
 
 export const processLocationData = (pessoas: PessoaDesaparecida[]): HeatmapPoint[] => {
   const locationGroups: LocationGroup = {}  
+  let dontInSystemlocations = new Set<string>()
   pessoas.forEach(pessoa => {
     if (pessoa.ultimaOcorrencia?.localDesaparecimentoConcat) {
       const location = extractCityFromLocation(pessoa.ultimaOcorrencia.localDesaparecimentoConcat)
+      if(!location) {
+        dontInSystemlocations.add(pessoa.ultimaOcorrencia.localDesaparecimentoConcat)
+      }
       if (location && cityCoordinates[location]) {
         if (!locationGroups[location]) {
           locationGroups[location] = {
@@ -67,6 +71,7 @@ export const processLocationData = (pessoas: PessoaDesaparecida[]): HeatmapPoint
       }
     }
   })
+  console.log(dontInSystemlocations)
 
   return Object.entries(locationGroups).map(([name, data]) => ({
     lat: data.lat,

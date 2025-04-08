@@ -53,11 +53,6 @@ export function useChartData() {
       "60+": 0
     }
 
-    const statusCount: StatusCount = {
-      encontrado: 0,
-      desaparecido: 0
-    }
-
     allPeople.forEach((pessoa: PessoaDesaparecida) => {
       if (pessoa.sexo) {
         genderCount[pessoa.sexo]++
@@ -72,13 +67,6 @@ export function useChartData() {
         else if (idade <= 59) ageGroups["41-59"]++
         else ageGroups["60+"]++
       }
-
-      const isFound = isLocalized(pessoa)
-      if (isFound) {
-        statusCount.encontrado++
-      } else {
-        statusCount.desaparecido++
-      }
     })
 
     const genderData = [
@@ -92,15 +80,9 @@ export function useChartData() {
       fill: CHART_COLORS.AGE
     }))
 
-    const statusData = [
-      { name: "Desaparecido", value: statusCount.desaparecido, fill: CHART_COLORS.STATUS.DESAPARECIDO },
-      { name: "Encontrado", value: statusCount.encontrado, fill: CHART_COLORS.STATUS.ENCONTRADO }
-    ]
-
     return {
       genderData,
       ageData,
-      statusData,
       totalLoaded,
       totalAvailable
     }
