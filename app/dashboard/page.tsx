@@ -3,15 +3,13 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Home, BarChart2, MapPin, Users } from "lucide-react"
 import generateJsonLd from "@/app/json-ld"
-import { useStats } from "@/services/statistics"
 import StatsCards from "@/components/dashboard/StatsCards"
 import { RecentCasesSection } from "@/components/dashboard/RecentCasesSection"
 import { MapSection } from "@/components/dashboard/MapSection"
 import { ChartsSection } from "@/components/dashboard/ChartsSection"
 import Link from "next/link"
-export default function Dashboard() {
-  const { isLoading: statsLoading } = useStats()
 
+export default function Dashboard() {
   return (
     <div className="container mx-auto px-4 py-8">
       <script
