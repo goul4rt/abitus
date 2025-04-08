@@ -11,7 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ChevronRight } from "lucide-react";
-import RecentActivityList from "@/components/dashboard/recent-activity";
+import RecentActivityList from "@/components/dashboard/RecentActivity";
 import { useRandomMissingPersons } from "@/services/people";
 import { ErrorMessage } from "@/components/layout";
 
@@ -67,4 +67,4 @@ export function RecentCasesSection() {
       </CardContent>
     </Card>
   );
-}
+} 

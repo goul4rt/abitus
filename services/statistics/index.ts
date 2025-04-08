@@ -9,14 +9,3 @@ export function useStats(options?: UseQueryOptions<StatsResponse>) {
     ...options,
   })
 }
-
-
-
-export function useStatsCards(options?: UseQueryOptions<StatsResponse>) {
-  return useQuery({
-    queryKey: ["stats_cards"],
-    queryFn: getStats,
-    ...options,
-  })
-}
-

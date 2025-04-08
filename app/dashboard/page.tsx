@@ -1,18 +1,15 @@
 "use client"
-import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Home, BarChart2, MapPin, Users } from "lucide-react"
 import generateJsonLd from "@/app/json-ld"
-import { ChartsSection } from "@/components/dashboard/charts-section"
-import { MapSection } from "@/components/dashboard/map-section"
-import { RecentCasesSection } from "@/components/dashboard/recent-cases-section"
-import { SuccessStoriesSection } from "@/components/dashboard/success-stories-section"
 import { useStats } from "@/services/statistics"
-import StatsCards from "@/components/dashboard/stats-cards"
-
+import StatsCards from "@/components/dashboard/StatsCards"
+import { RecentCasesSection } from "@/components/dashboard/RecentCasesSection"
+import { MapSection } from "@/components/dashboard/MapSection"
+import { ChartsSection } from "@/components/dashboard/ChartsSection"
+import Link from "next/link"
 export default function Dashboard() {
-  const router = useRouter()
   const { isLoading: statsLoading } = useStats()
 
   return (
@@ -29,10 +26,12 @@ export default function Dashboard() {
           <h1 className="text-3xl font-bold">Dashboard</h1>
           <p className="text-muted-foreground">Visualização e análise de dados sobre pessoas desaparecidas</p>
         </div>
-        <Button onClick={() => router.push("/")} variant="outline">
-          <Home className="mr-2 h-4 w-4" />
-          Voltar para Lista
-        </Button>
+          <Link href="/">
+          <Button variant="outline">
+            <Home className="mr-2 h-4 w-4" />
+            Voltar para Lista
+          </Button>
+        </Link>
       </div>
 
       <StatsCards />
@@ -66,7 +65,6 @@ export default function Dashboard() {
         </TabsContent>
       </Tabs>
 
-      <SuccessStoriesSection loading={statsLoading} />
     </div>
   )
 }

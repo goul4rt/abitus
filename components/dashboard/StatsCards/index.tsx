@@ -2,10 +2,13 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Skeleton } from "@/components/ui/skeleton"
-import { useStatsCards } from "@/services/statistics"
+import { useStats } from "@/services/statistics"
 import { UserX, UserCheck, Users, TrendingUp } from "lucide-react"
+
 export default function StatsCards() {
-  const { data: stats, isLoading: loading } = useStatsCards()
+  const { data: stats, isLoading: loading } = useStats({
+    queryKey: ["stats_cards"],
+  })
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" role="region" aria-label="Estatísticas">
@@ -122,4 +125,4 @@ export default function StatsCards() {
       </Card>
     </div>
   )
-}
+} 

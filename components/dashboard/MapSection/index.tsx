@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import MapVisualization from "@/components/dashboard/map/map-component"
+import MapVisualization from "@/components/dashboard/MapComponent"
 
 export function MapSection() {
   return (
@@ -17,5 +17,4 @@ export function MapSection() {
       </CardContent>
     </Card>
   )
-}
-
+} 

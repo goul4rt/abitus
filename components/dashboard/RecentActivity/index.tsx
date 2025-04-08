@@ -2,9 +2,10 @@
 
 import { useRouter } from "next/navigation"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { formatDate } from "@/lib/utils"
+import { formatDate, getPersonStatus } from "@/lib/utils"
+import { RecentActivityProps } from "./types"
 
-export default function RecentActivityList({ persons }) {
+export default function RecentActivityList({ persons }: RecentActivityProps) {
   const router = useRouter()
 
   if (!persons || persons.length === 0) {
@@ -30,7 +31,7 @@ export default function RecentActivityList({ persons }) {
           <div className="space-y-1">
             <p className="text-sm font-medium leading-none">{person.nome}</p>
             <p className="text-sm text-muted-foreground">
-              Desaparecido em {formatDate(person.ultimaOcorrencia?.dtDesaparecimento)}
+              Desaparecido em {getPersonStatus(person).disapearDate}
               {person.ultimaOcorrencia?.localDesaparecimentoConcat &&
                 ` • ${person.ultimaOcorrencia.localDesaparecimentoConcat}`}
             </p>
@@ -39,5 +40,4 @@ export default function RecentActivityList({ persons }) {
       ))}
     </div>
   )
-}
-
+} 

@@ -1,6 +1,7 @@
 import API from "@/lib/api"
 import axios from "axios"
 import type { PessoaDesaparecida, PessoasResponse, PessoasParams } from "./types"
+import { useInfiniteQuery } from "@tanstack/react-query"
 
 export async function fetchMissingPersons(params: PessoasParams): Promise<PessoasResponse> {
   try {
@@ -31,4 +32,28 @@ export async function fetchRandomMissingPersons(count: number): Promise<PessoaDe
     params: { registros: count },
   })
   return response.data
+}
+
+export function useInfiniteMissingPersons(
+  initialParams: Omit<PessoasParams, "pagina">,
+  options = {}
+) {
+  return useInfiniteQuery({
+    queryKey: ["missingPersons", initialParams],
+    queryFn: async ({ pageParam = 0 }) => {
+      const params: PessoasParams = {
+        ...initialParams,
+        pagina: pageParam,
+      }
+      return await fetchMissingPersons(params)
+    },
+    initialPageParam: 0,
+    getNextPageParam: (lastPage) => {
+      if (lastPage.number < lastPage.totalPages - 1) {
+        return lastPage.number + 1
+      }
+      return undefined
+    },
+    ...options,
+  })
 } 
