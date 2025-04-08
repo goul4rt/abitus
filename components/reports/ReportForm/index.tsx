@@ -69,7 +69,7 @@ export default function ReportForm({
         name="informacao"
         control={control}
         label="O que você sabe sobre esta pessoa?"
-        placeholder="Descreva onde, quando e como você viu esta pessoa, o que ela estava fazendo, com quem estava, etc."
+        placeholder="Descreva onde, quando e como você viu esta pessoa, com quem estava, etc"
         rows={isMobile ? 3 : 2}
         isRequired
         hasError={!!errors.informacao}

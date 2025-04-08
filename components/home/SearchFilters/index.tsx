@@ -22,9 +22,9 @@ export default function SearchFilters({
   return (
     <Card className="mb-8 border-t-4 border-t-primary">
       <CardContent className="pt-6">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center md:mb-4 mb-2">
           <h2 className="text-lg font-medium">Buscar Pessoas</h2>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col md:flex-row md:items-center gap-2 mt-4 md:mt-0">
             <Button variant="outline" size="sm" onClick={onToggleFilters}>
               <SlidersHorizontal className="h-4 w-4 mr-2" />
               {showFilters ? "Ocultar Filtros" : "Mostrar Filtros"}
@@ -34,7 +34,7 @@ export default function SearchFilters({
         </div>
 
         <form onSubmit={onSearch} className="space-y-4">
-          <div className="flex w-full gap-2">
+          <div className="flex flex-col md:flex-row md:items-center w-full gap-2">
             <Input
               placeholder="Buscar por nome..."
               value={filters.nome}

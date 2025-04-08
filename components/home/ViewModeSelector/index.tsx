@@ -18,7 +18,7 @@ export function ViewModeDropdown({
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm">
           {renderViewModeIcon()}
-          <span className="ml-2 hidden sm:inline">Visualização</span>
+          <span className="ml-2">Visualização</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
