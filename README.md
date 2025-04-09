@@ -161,11 +161,11 @@ docker-compose up -d
 
 ```bash
 # Clonar o repositório
-git clone https://github.com/seu-usuario/abitus.git
+git clone https://github.com/goul4rt/abitus.git
 cd abitus
 
 # Iniciar em modo de produção
-docker-compose up -d
+docker compose up -d
 
 # Acessar a aplicação
 # http://localhost:3000
