@@ -138,7 +138,7 @@ Esta configuração:
 
 ```bash
 # Clonar o repositório
-git clone https://github.com/seu-usuario/abitus.git
+git clone https://github.com/goul4rt/abitus.git
 cd abitus
 
 # Iniciar em modo de produção
