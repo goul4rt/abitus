@@ -14,6 +14,9 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  ...(process.env.DOCKER_ENV === 'true' && {
+    output: 'standalone',
+  }),
 }
 
 export default nextConfig
