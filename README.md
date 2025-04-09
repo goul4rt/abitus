@@ -14,6 +14,10 @@
 
 ---
 
+## Dados da inscrições
+- Inscrição: 9604
+- E-mail: aroldogooulart@gmail.com
+
 ## 📋 Sumário
 - [Visão Geral do Projeto](#-visão-geral-do-projeto)
 - [Funcionalidades Principais](#-funcionalidades-principais)
