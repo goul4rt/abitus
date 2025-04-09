@@ -17,7 +17,7 @@
 ## Dados da inscrições
 - Inscrição: 9604
 - E-mail: aroldogooulart@gmail.com
-- Posição: Frot-end Senior
+- Posição: Front-end Senior
 
 ## 📋 Sumário
 - [Visão Geral do Projeto](#-visão-geral-do-projeto)
