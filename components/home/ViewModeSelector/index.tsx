@@ -16,23 +16,37 @@ export function ViewModeDropdown({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm">
+        <Button 
+          variant="outline" 
+          size="sm"
+          aria-label="Selecionar modo de visualização"
+          aria-haspopup="true"
+        >
           {renderViewModeIcon()}
-          <span className="ml-2">Visualização</span>
+          <span className="ml-2" aria-label="Texto de visualização" aria-live="polite">Visualização</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setViewMode("grid")}>
-          <Grid className="mr-2 h-4 w-4" />
-          <span>Grid</span>
+      <DropdownMenuContent align="end" aria-label="Opções de visualização">
+        <DropdownMenuItem 
+          onClick={() => setViewMode("grid")}
+          aria-label="Visualizar em grid"
+        >
+          <Grid className="mr-2 h-4 w-4" aria-hidden="true" />
+          <span aria-label="Modo grid" aria-live="polite">Grid</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setViewMode("list")}>
-          <List className="mr-2 h-4 w-4" />
-          <span>Lista</span>
+        <DropdownMenuItem 
+          onClick={() => setViewMode("list")}
+          aria-label="Visualizar em lista"
+        >
+          <List className="mr-2 h-4 w-4" aria-hidden="true" />
+          <span aria-label="Modo lista" aria-live="polite">Lista</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setViewMode("table")}>
-          <Table2 className="mr-2 h-4 w-4" />
-          <span>Tabela</span>
+        <DropdownMenuItem 
+          onClick={() => setViewMode("table")}
+          aria-label="Visualizar em tabela"
+        >
+          <Table2 className="mr-2 h-4 w-4" aria-hidden="true" />
+          <span aria-label="Modo tabela" aria-live="polite">Tabela</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -41,19 +55,45 @@ export function ViewModeDropdown({
 
 export function ViewModeTabs({ viewMode, setViewMode }: ViewModeTabsProps) {
   return (
-    <Tabs value={viewMode} onValueChange={setViewMode} className="mb-6">
-      <TabsList className="w-full md:w-auto">
-        <TabsTrigger value="grid" className="flex items-center">
-          <Grid className="mr-2 h-4 w-4" />
-          <span>Grid</span>
+    <Tabs 
+      value={viewMode} 
+      onValueChange={setViewMode} 
+      className="mb-6"
+      aria-label="Modos de visualização"
+    >
+      <TabsList className="w-full md:w-auto" role="tablist">
+        <TabsTrigger 
+          value="grid" 
+          className="flex items-center"
+          role="tab"
+          aria-selected={viewMode === "grid"}
+          aria-controls="grid-view-panel"
+          aria-label="Visualização em grid"
+        >
+          <Grid className="mr-2 h-4 w-4" aria-hidden="true" />
+          <span aria-label="Visualização em grid" aria-live="polite">Grid</span>
         </TabsTrigger>
-        <TabsTrigger value="list" className="flex items-center">
-          <List className="mr-2 h-4 w-4" />
-          <span>Lista</span>
+        <TabsTrigger 
+          value="list" 
+          className="flex items-center"
+          role="tab"
+          aria-selected={viewMode === "list"}
+          aria-controls="list-view-panel"
+          aria-label="Visualização em lista"
+        >
+          <List className="mr-2 h-4 w-4" aria-hidden="true" />
+          <span aria-label="Visualização em lista" aria-live="polite">Lista</span>
         </TabsTrigger>
-        <TabsTrigger value="table" className="flex items-center">
-          <Table2 className="mr-2 h-4 w-4" />
-          <span>Tabela</span>
+        <TabsTrigger 
+          value="table" 
+          className="flex items-center"
+          role="tab"
+          aria-selected={viewMode === "table"}
+          aria-controls="table-view-panel"
+          aria-label="Visualização em tabela"
+        >
+          <Table2 className="mr-2 h-4 w-4" aria-hidden="true" />
+          <span aria-label="Visualização em tabela" aria-live="polite">Tabela</span>
         </TabsTrigger>
       </TabsList>
     </Tabs>

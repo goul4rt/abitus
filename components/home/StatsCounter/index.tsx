@@ -37,8 +37,8 @@ export default function StatsCounter({ missingCount, foundCount, isLoading }: St
             <UserX className="h-6 w-6 text-red-600" />
           </div>
           <div>
-            <p className="text-sm font-medium text-muted-foreground">Pessoas Desaparecidas</p>
-            <h3 className="text-2xl font-bold">{missingCount.toLocaleString()}</h3>
+            <h2 className="text-sm font-medium text-muted-foreground">Pessoas Desaparecidas</h2>
+            <p className="text-2xl font-bold">{missingCount.toLocaleString()}</p>
           </div>
         </CardContent>
       </Card>
@@ -49,8 +49,8 @@ export default function StatsCounter({ missingCount, foundCount, isLoading }: St
             <UserCheck className="h-6 w-6 text-green-600" />
           </div>
           <div>
-            <p className="text-sm font-medium text-muted-foreground">Pessoas Localizadas</p>
-            <h3 className="text-2xl font-bold">{foundCount.toLocaleString()}</h3>
+            <h2 className="text-sm font-medium text-muted-foreground">Pessoas Localizadas</h2>
+            <p className="text-2xl font-bold">{foundCount.toLocaleString()}</p>
           </div>
         </CardContent>
       </Card>
