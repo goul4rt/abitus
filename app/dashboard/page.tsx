@@ -18,14 +18,13 @@ export default function Dashboard() {
           __html: JSON.stringify(generateJsonLd("dashboard")),
         }}
       />
-
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4">
         <div>
           <h1 className="text-3xl font-bold">Dashboard</h1>
           <p className="text-muted-foreground">Visualização e análise de dados sobre pessoas desaparecidas</p>
         </div>
-          <Link href="/">
-          <Button variant="outline">
+        <Link href="/">
+          <Button variant="outline" className="w-full md:w-auto">
             <Home className="mr-2 h-4 w-4" />
             Voltar para Lista
           </Button>
