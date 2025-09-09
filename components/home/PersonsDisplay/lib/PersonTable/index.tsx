@@ -159,7 +159,6 @@ export default function PersonTable({ persons }: PersonTableProps) {
                 Local {getSortIcon("local")}
               </Button>
             </TableHead>
-            <TableHead className="font-bold">Status</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -211,14 +210,6 @@ export default function PersonTable({ persons }: PersonTableProps) {
                   href={`/person/${person.id}`}
                 >
                   {person.ultimaOcorrencia.localDesaparecimentoConcat || "-"}
-                </TableCell>
-                <TableCell href={`/person/${person.id}`}>
-                  <Badge
-                    className={!isLocalized ? "bg-destructive" : "bg-green-600"}
-                    aria-label={statusText}
-                  >
-                    {statusText}
-                  </Badge>
                 </TableCell>
               </TableRow>
             );

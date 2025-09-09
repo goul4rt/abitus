@@ -10,18 +10,6 @@ export function PersonInfo({ idade, sexo, isLocalized, encontradoVivo, vivo }: P
         <span className="font-medium">Sexo:</span>{" "}
         {sexo === "MASCULINO" ? "Masculino" : "Feminino"}
       </div>
-      {isLocalized && (
-        <div className="col-span-2">
-          <span className="font-medium">Status:</span>{" "}
-          {encontradoVivo !== undefined
-            ? encontradoVivo
-              ? "Encontrado com vida"
-              : "Encontrado sem vida"
-            : vivo
-            ? "Encontrado com vida"
-            : "Encontrado sem vida"}
-        </div>
-      )}
     </div>
   );
 } 

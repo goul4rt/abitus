@@ -5,9 +5,6 @@ export function PersonHeader({ nome, isLocalized }: PersonHeaderProps) {
   return (
     <div className="flex items-center gap-3 mb-2">
       <h1 className="text-3xl font-bold">{nome}</h1>
-      <Badge className={!isLocalized ? "bg-destructive" : "bg-green-600"}>
-        {!isLocalized ? "Desaparecido" : "Localizado"}
-      </Badge>
     </div>
   );
 } 

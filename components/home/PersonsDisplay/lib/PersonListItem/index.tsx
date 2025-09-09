@@ -22,25 +22,11 @@ export default function PersonListItem({ person }: PersonListItemProps) {
       <Link href={`/person/${person.id}`}>
         <Card
           className="overflow-hidden transition-all hover:shadow-md cursor-pointer border-l-4 relative"
-          style={{
-            borderLeftColor: !isLocalized
-              ? "var(--destructive)"
-              : "var(--green-600)",
-          }}
-          tabIndex={0}
           role="button"
           aria-label={`Ver detalhes de ${nome}, ${idade} anos, ${
             sexo === "MASCULINO" ? "masculino" : "feminino"
           }, ${statusText} em ${statusDate}`}
         >
-          <Badge
-            className={`text-xs whitespace-nowrap absolute bottom-0.5 right-0.5 ${
-              !isLocalized ? "bg-destructive" : "bg-green-600"
-            } md:hidden`}
-            aria-label={statusText}
-          >
-            {statusText}
-          </Badge>
 
           <CardContent className="p-3 md:p-4">
             <div className="grid grid-cols-[auto_1fr_auto] md:flex md:flex-row items-start md:items-center gap-2 md:gap-4">
@@ -56,15 +42,6 @@ export default function PersonListItem({ person }: PersonListItemProps) {
                   <h3 className="font-semibold text-base md:text-lg max-w-[150px] md:max-w-none truncate">
                     {nome}
                   </h3>
-                  <Badge
-                    className={cn(
-                      "text-xs whitespace-nowrap hidden md:block",
-                      !isLocalized ? "bg-destructive" : "bg-green-600"
-                    )}
-                    aria-label={statusText}
-                  >
-                    {statusText}
-                  </Badge>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-0 text-xs md:text-sm text-muted-foreground mb-1">

@@ -9,10 +9,7 @@ import { PersonTabs } from "../PersonTabs";
 import generateJsonLd from "@/app/json-ld";
 import { getPersonStatus } from "@/lib/utils";
 
-export function PersonDetails({
-  person,
-  onShare,
-}: PersonDetailsProps) {
+export function PersonDetails({ person, onShare }: PersonDetailsProps) {
   const { nome, idade, sexo, vivo, urlFoto, ultimaOcorrencia, id } = person;
   const { isLocalized, disapearDate } = getPersonStatus(person);
 
@@ -63,13 +60,11 @@ export function PersonDetails({
             isLocalized={isLocalized}
           />
 
-          {!isLocalized && (
-            <Link href={`/report/${ultimaOcorrencia.ocoId}`}>
-              <Button size="lg" className="w-full">
-                Informar sobre esta pessoa
-              </Button>
-            </Link>
-          )}
+          <Link href={`/report/${ultimaOcorrencia.ocoId}`}>
+            <Button size="lg" className="w-full">
+              Informar sobre esta pessoa
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

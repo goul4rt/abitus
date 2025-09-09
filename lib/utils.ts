@@ -48,6 +48,10 @@ export function isLocalized(person: PessoaDesaparecida) {
   return !!(person.ultimaOcorrencia.dataLocalizacao || person.ultimaOcorrencia.dataLocalizacao)
 }
 
+/**
+ * NOTA AO REVISOR 02:
+ * O status `isLocalized` foi removido por conta da API não deixar claro qual é o status de localização.
+*/
 export function getPersonStatus(person?: PessoaDesaparecida) {
   if(!person) return { statusText: "", statusDate: "", isLocalized: false }
   const isFound = isLocalized(person)

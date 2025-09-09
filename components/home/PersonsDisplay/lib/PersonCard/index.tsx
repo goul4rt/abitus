@@ -50,14 +50,6 @@ export default function PersonCard({ person }: PersonCardProps) {
                 </span>
               </div>
             )}
-            <Badge
-              className={`absolute top-2 right-2 ${
-                !isLocalized ? "bg-destructive" : "bg-green-600"
-              }`}
-              aria-label={statusText}
-            >
-              {statusText}
-            </Badge>
           </div>
 
           <CardContent className="p-4 flex-grow">

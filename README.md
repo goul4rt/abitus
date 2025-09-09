@@ -10,7 +10,7 @@
 
 ## 🔗 Links do Projeto
 - 📂 **GitHub**: [https://github.com/goul4rt/abitus](https://github.com/goul4rt/abitus)
-- 🌐 **Demo em Produção**: [https://ogoulart.com/](https://ogoulart.com/)
+- 🌐 **Demo em Produção**: [https://ogoulart.dev/](https://ogoulart.dev/)
 
 ---
 
